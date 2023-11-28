@@ -8,18 +8,18 @@ image bounds(10, 14, 240, 27) channel("lblTitle") file("./images/badhumors-title
 image bounds (263, 20, 26, 43) channel("panelMisc") colour("black")
 {
     button bounds(0, 0, 26, 16) channel("btnSight") text("") value(0) presetIgnore(1) corners(15) imgFile("off", "./images/eye-grey.svg") imgFile("on", "./images/eye-white.svg")
-    infobutton bounds(8, 27, 10, 16) file("https://github.com/niflheimmer/badhumors") text("") imgFile("off", "./images/question-white.svg") imgFile("on", "./images/question-white.svg")
+    infobutton bounds(8, 27, 10, 16) channel("btnHelp") file("https://github.com/niflheimmer/badhumors") text("") imgFile("off", "./images/question-white.svg") imgFile("on", "./images/question-white.svg")
 }
 
 ; Plugin menu controls
 image bounds (10, 47, 140, 33) channel("panelMenu") colour("black")
 {
-    combobox bounds(0, 0, 55, 16) mode("resize") value(3) automatable(0) channel("PluginResizerCombBox")
-    filebutton bounds(60, 0, 16, 16) mode("named preset") populate("*.snaps") text("") imgFile("off", "./images/save-white.svg") imgFile("on", "./images/save-white.svg")
-    filebutton bounds(81, 0, 16, 16) mode("remove preset") populate("*.snaps") text("") imgFile("off", "./images/delete-white.svg") imgFile("on", "./images/delete-white.svg")
+    combobox bounds(0, 0, 55, 16) channel("PluginResizerCombBox") mode("resize") value(3) automatable(0)
+    filebutton bounds(60, 0, 16, 16) channel("btnSave") mode("named preset") populate("*.snaps") text("") imgFile("off", "./images/save-white.svg") imgFile("on", "./images/save-white.svg")
+    filebutton bounds(81, 0, 16, 16) channel("btnDelete") mode("remove preset") populate("*.snaps") text("") imgFile("off", "./images/delete-white.svg") imgFile("on", "./images/delete-white.svg")
     button bounds(102, 0, 16, 16) channel("btnRandom") text("") presetIgnore(1) imgFile("off", "./images/randomize-white.svg") imgFile("on", "./images/randomize-white.svg")
     button bounds(123, 0, 16, 16) channel("btnClear") text("") presetIgnore(1) imgFile("off", "./images/clear-white.svg") imgFile("on", "./images/clear-white.svg")
-    combobox bounds(0, 17, 140, 16) populate("*.snaps")
+    combobox bounds(0, 17, 140, 16) channel("combBoxPresets") populate("*.snaps")
 }
 
 ; Host info
@@ -39,7 +39,7 @@ image bounds(392, 13, 37, 52) channel("panelPower") colour("black")
 ; Step length
 image bounds(300, 5, 80, 76) channel("panelStepLen") colour("black")
 {
-    rslider bounds(0, 0, 80, 60) channel("knobStepLen") range(0, 5, 0, 1, 1) text("Step Length") trackerColour("lime")
+    rslider bounds(0, 0, 80, 60) channel("knobStepLen") range(0, 5, 0, 1, 1) text("Step Length") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("lime")
     label bounds(0, 60, 80, 16) channel("lblStepLen") text("Whole")
 }
 
@@ -47,47 +47,47 @@ image bounds(300, 5, 80, 76) channel("panelStepLen") colour("black")
 label bounds(25, 85, 400, 125) channel("tempGrid") text("GRID") visible(0)
 
 ; Step slider
-hslider bounds(35, 210, 380, 25) channel("sliderNumSteps") range(1, 16, 16, 1, 1) trackerColour("lime")
+hslider bounds(35, 210, 380, 25) channel("sliderNumSteps") range(1, 16, 16, 1, 1) popupPostfix(" steps") trackerColour("lime")
 
 ; Blood - slicer
 image bounds(20, 240, 100, 200) channel("panelFX0") colour("black") corners(13) outlineThickness(2) outlineColour("crimson")
 {
-    image bounds(10, 10, 16, 16) file("./images/slice-crimson.svg")
+    image bounds(10, 10, 16, 16) channel("imgFX0") file("./images/slice-crimson.svg")
     button bounds(35, 10, 30, 30) channel("btnCut") text("") value(1) corners(15) colour:0("grey") colour:1("crimson") outlineColour("white")
     label bounds(0, 45, 100, 16) channel("lblFX0") text("Blood") fontColour("white")
     button bounds(35, 73, 30, 36) channel("btnCutRev") text("") value(0) imgFile("off", "./images/reverse-grey.svg") imgFile("on", "./images/reverse-crimson.svg")
     label bounds(0, 112, 100, 14) channel("lblCutRev") text("Reverse") fontStyle("plain")
-    rslider bounds(0, 130, 100, 60) channel("knobCutSpd") range(1, 4, 2, 1, 1) text("Speed") trackerColour("crimson")
+    rslider bounds(0, 130, 100, 60) channel("knobCutSpd") range(1, 4, 2, 1, 1) text("Speed") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("crimson")
 }
 
 ; Yellow Bile - bitcrusher
 image bounds(123, 240, 100, 200) channel("panelFX1") colour("black") corners(13) outlineThickness(2) outlineColour("gold")
 {
-    image bounds(9, 10, 18, 16) file("./images/bitwave-gold.svg")
+    image bounds(9, 10, 18, 16) channel("imgFX1") file("./images/bitwave-gold.svg")
     button bounds(35, 10, 30, 30) channel("btnCrsh") text("") value(1) corners(15) colour:0("grey") colour:1("gold") outlineColour("white")
     label bounds(0, 45, 100, 16) channel("lblFX1") text("Yellow Bile") fontColour("white")
-    rslider bounds(0, 65, 100, 60) channel("knobCrshAmnt") range(1, 250, 6, 0.5, 1) text("Amount") trackerColour("gold")
-    rslider bounds(0, 130, 100, 60) channel("knobCrshGain") range(0, 2, 1, 1, 0.01) text("Gain") trackerColour("gold")
+    rslider bounds(0, 65, 100, 60) channel("knobCrshAmnt") range(1, 250, 6, 0.5, 1) text("Amount") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("gold")
+    rslider bounds(0, 130, 100, 60) channel("knobCrshGain") range(0, 2, 1, 1, 0.01) text("Gain") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("gold")
 }
 
 ; Black Bile - distortion
 image bounds(227, 240, 100, 200) channel("panelFX2") colour("black") corners(13) outlineThickness(2) outlineColour("peru")
 {
-    image bounds(10, 10, 16, 16) file("./images/waveshape-peru.svg")
+    image bounds(10, 10, 16, 16) channel("imgFX2") file("./images/waveshape-peru.svg")
     button bounds(35, 10, 30, 30) channel("btnDist") text("") value(1) corners(15) colour:0("grey") colour:1("peru") outlineColour("white")
     label bounds(0, 45, 100, 16) channel("lblFX2") text("Black Bile") fontColour("white")
-    rslider bounds(0, 65, 100, 60) channel("knobDistAmnt") range(0, 1, 1, 1, 0.01) text("Amount") trackerColour("peru")
-    rslider bounds(0, 130, 100, 60) channel("knobDistGain") range(0, 2, 1, 1, 0.01) text("Gain") trackerColour("peru")
+    rslider bounds(0, 65, 100, 60) channel("knobDistAmnt") range(0, 1, 1, 1, 0.01) text("Amount") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("peru")
+    rslider bounds(0, 130, 100, 60) channel("knobDistGain") range(0, 2, 1, 1, 0.01) text("Gain") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("peru")
 }
 
 ; Phlegm - comb reverb
 image bounds(330, 240, 100, 200) channel("panelFX3") colour("black") corners(13) outlineThickness(2) outlineColour("skyblue")
 {
-    image bounds(10, 10, 16, 16) file("./images/comb-skyblue.svg")
+    image bounds(10, 10, 16, 16) channel("imgFX3") file("./images/comb-skyblue.svg")
     button bounds(35, 10, 30, 30) channel("btnRev") text("") value(1) corners(15) colour:0("grey") colour:1("skyblue") outlineColour("white")
     label bounds(0, 45, 100, 16) channel("lblFX3") text("Phlegm") fontColour("white")
-    rslider bounds(0, 65, 100, 60) channel("knobRevLen") range(0, 1, 0.05, 1, 0.01) text("Length") trackerColour("skyblue")
-    rslider bounds(0, 130, 100, 60) channel("knobRevGain") range(0, 2, 1, 1, 0.01) text("Gain") trackerColour("skyblue")
+    rslider bounds(0, 65, 100, 60) channel("knobRevLen") range(0, 1, 0.05, 1, 0.01) text("Length") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("skyblue")
+    rslider bounds(0, 130, 100, 60) channel("knobRevGain") range(0, 2, 1, 1, 0.01) text("Gain") popupText(0) colour("black") markerColour("white") outlineColour("grey") trackerColour("skyblue")
 }
 </Cabbage>
 <CsoundSynthesizer>
